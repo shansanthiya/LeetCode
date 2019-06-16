@@ -1,0 +1,34 @@
+void reverseString( char* start, char* end)
+{
+    
+    while(end>start)
+    {
+        char temp = *start;
+        *start = *end;
+        *end = temp;
+        start++;
+        end--;
+    }
+    
+}
+
+char * reverseWords(char * s){
+    char* start = s;
+    char* end = s ;
+    
+    while(*end != '\0')
+    {
+        while(*end != ' ' && *end != '\0')
+            end++;
+        
+        reverseString( start,end-1);
+        
+        if(*end != '\0')
+        {
+            end++;
+            start = end;
+        }
+    }
+    return s;
+}
+
