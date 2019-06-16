@@ -1,0 +1,17 @@
+
+
+char * reverseWords(char * s){
+    char* start = s;
+    char* end = s +strlen(s) -1;
+    
+    while(end>start)
+    {
+        char temp = *start;
+        *start = *end;
+        *end = temp;
+        start++;
+        end--;
+    }
+    return s;
+}
+
