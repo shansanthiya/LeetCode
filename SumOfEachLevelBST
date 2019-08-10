@@ -1,0 +1,31 @@
+double* averageOfLevels(struct Node* root, int* returnSize){
+    
+    if(root == NULL)
+        return 0;
+    queue<Node*> q;
+    double* arr =  (double *)malloc(sizeof(double) * (*returnSize));
+    int i = 0;
+    q.push(root);
+    
+    while(!q.empty())
+    {
+        int count = q.size();
+        double sum = 0;
+        while(count > 0)
+        {
+            Node* node = q.front();
+            sum = sum + node->data;
+            q.pop();
+            
+            if(node->left != NULL)
+                q.push(node->left);
+            if(node->right != NULL)
+                q.push(node->right);
+            count--;
+        }
+        arr[i] = sum;
+        i++;
+        sum = 0;
+    }
+    return arr;
+}
