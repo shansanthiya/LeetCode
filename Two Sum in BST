@@ -1,0 +1,35 @@
+    void inorder(struct TreeNode* root, vector<int> &arr)
+{
+    if(root == NULL)
+        return;
+    inorder(root->left,arr);
+        arr.push_back(root->val);
+        inorder(root->right,arr);
+    
+    
+}
+    
+    bool find(int k, vector<int> &arr)
+    {
+        int l = 0;
+        int h = arr.size() -1;
+       while(h >l)
+       {
+        if(arr[l]+arr[h] == k)
+            return true;
+        else if(arr[l]+arr[h] > k)
+            h--;
+        else
+            l++;
+       }
+        return false;
+        
+    }
+
+bool findTarget(struct TreeNode* root, int k){
+    vector<int> arr;
+    inorder(root,arr);
+    return find(k, arr);
+    
+
+}
