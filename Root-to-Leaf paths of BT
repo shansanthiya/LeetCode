@@ -1,0 +1,23 @@
+void binaryTreePaths(vector<string>& result, TreeNode* root, string res) 
+    {
+        if(root->left == NULL && root->right == NULL) 
+        {
+            result.push_back(res);
+            return;
+        }
+
+        if(root->left) 
+            binaryTreePaths(result, root->left, res + "->" + to_string(root->left->val));
+        if(root->right) 
+            binaryTreePaths(result, root->right, res + "->" + to_string(root->right->val));
+    }
+
+vector<string> binaryTreePaths(TreeNode* root) 
+{
+    vector<string> result;
+    if(root == NULL) 
+        return result;
+    
+    binaryTreePaths(result, root, to_string(root->val));
+    return result;
+}
