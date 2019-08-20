@@ -1,0 +1,36 @@
+void MoveNode(struct ListNode** dest,struct ListNode** src )
+{
+    struct ListNode* temp = *src;
+    *src = temp->next;
+    temp->next = *dest;
+    *dest = temp;
+}
+
+struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2){
+    
+    struct ListNode dummy;
+    dummy.next = NULL;
+    struct ListNode* tail = &dummy;
+    while(1)
+    {
+        if(l1 == NULL)
+        {
+            tail->next = l2;
+            break;
+        }
+        else if(l2 == NULL)
+        {
+            tail->next = l1;
+            break;
+        }
+        if(l1->val <= l2->val)
+            MoveNode(&(tail->next), &l1);
+        else
+            MoveNode(&(tail->next), &l2);
+        
+        tail = tail->next;
+        
+    }
+    return dummy.next;
+
+}
