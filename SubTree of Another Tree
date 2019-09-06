@@ -10,14 +10,17 @@ bool isSameTree( TreeNode* root1, TreeNode* root2 )
         
     }
                 
-    bool isSubtree(TreeNode* sub, TreeNode* tree) {
+    bool isSubtree(TreeNode* mainTree, TreeNode* tree) {
         
-        if(sub == NULL) 
-            return false;
-        
-        if (isSameTree(sub,tree)) 
+        if(tree == NULL)
             return true;
         
-        return isSubtree(sub->left,tree) || isSubtree(sub->right,tree);
+        if(mainTree == NULL) 
+            return false;
+        
+        if (isSameTree(mainTree,tree)) 
+            return true;
+        
+        return isSubtree(mainTree->left,tree) || isSubtree(mainTree->right,tree);
         
     }
