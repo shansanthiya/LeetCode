@@ -1,0 +1,12 @@
+    bool isPalindrome(ListNode* head) {
+        
+        return isPalindromeUtil(&head, head);
+    }
+    
+    bool isPalindromeUtil(ListNode** left, ListNode* right) {
+        if (right == NULL) 
+            return true;
+        bool isPal = isPalindromeUtil(left, right->next) &( right->val == (*left)->val) ;
+        *left = (*left)->next; 
+        return isPal;
+    }
