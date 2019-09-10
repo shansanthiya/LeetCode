@@ -1,0 +1,29 @@
+int pathSum(TreeNode* root, int sum) {
+        int count = 0;
+        vector<int> path; 
+        pathSumUtil(root, path, sum, &count);
+        return count;
+    }
+    void pathSumUtil(TreeNode *root, vector<int>& path, 
+                                           int k, int* count) 
+{ 
+    if (!root) 
+        return; 
+  
+    path.push_back(root->val); 
+  
+    pathSumUtil(root->left, path, k,count); 
+
+    pathSumUtil(root->right, path, k,count); 
+  
+    int f = 0; 
+    for (int j=path.size()-1; j>=0; j--) 
+    { 
+        f += path[j]; 
+  
+        if (f == k) 
+            (*count)++;
+    } 
+  
+    path.pop_back(); 
+}       
