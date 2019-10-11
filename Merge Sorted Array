@@ -29,3 +29,51 @@ void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n){
     }
 
 }
+
+// C++ program to merge k sorted arrays of size n each. 
+#include <bits/stdc++.h> 
+using namespace std; 
+ 
+typedef pair<int, pair<int, int> > ele; 
+
+vector<int> mergeKArrays(vector<vector<int> > arr) 
+{ 
+	vector<int> res;
+  
+ 	priority_queue<ele, vector<ele>,greater<ele>> pq;
+  	
+  	for(int i = 0; i < arr.size(); i++)
+    	pq.push({arr[i][0], {i, 0}});
+  
+ 	while(!pq.empty())
+    {
+      	ele min = pq.top();
+     	pq.pop();
+      
+      	res.push_back(min.first);
+      
+      	int i = min.second.first;
+      	int j = min.second.second;
+      
+      	if(j + 1 < arr[i].size())
+        {
+          pq.push({arr[i][j+1], {i, j + 1}});
+        }
+    }
+  	return res;
+} 
+
+int main() 
+{ 
+	vector<vector<int> > arr{ { 2, 6, 12 }, 
+							{ 1, 9 ,20}, 
+							{ 23, 34, 90} }; 
+
+	vector<int> output = mergeKArrays(arr); 
+
+	cout << "Merged array is " << endl; 
+	for (auto x : output) 
+		cout << x << " "; 
+
+	return 0; 
+} 
