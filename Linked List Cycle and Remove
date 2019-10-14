@@ -1,0 +1,44 @@
+bool hasCycle(ListNode *head) {
+        
+        if(head == NULL)
+            return false;
+        
+        ListNode* fastptr = head;
+        ListNode* slowptr = head;
+        
+        while(fastptr && slowptr && fastptr->next)
+        {
+            fastptr = fastptr->next->next;
+            slowptr = slowptr->next;
+            if(fastptr == slowptr)
+            return true;
+        }
+            return false;
+    }
+
+void removeLoop(struct Node* loop_node, struct Node* head) 
+{ 
+    struct Node* ptr1 = loop_node; 
+    struct Node* ptr2 = loop_node; 
+  
+    unsigned int k = 1, i; 
+    while (ptr1->next != ptr2) { 
+        ptr1 = ptr1->next; 
+        k++; 
+    } 
+  
+    ptr1 = head; 
+    ptr2 = head; 
+    for (i = 0; i < k; i++) 
+        ptr2 = ptr2->next; 
+  
+    while (ptr2 != ptr1) { 
+        ptr1 = ptr1->next; 
+        ptr2 = ptr2->next; 
+    } 
+  
+    while (ptr2->next != ptr1) 
+        ptr2 = ptr2->next; 
+ 
+    ptr2->next = NULL; 
+} 
