@@ -16,6 +16,8 @@ bool hasCycle(ListNode *head) {
             return false;
     }
 
+
+/* REMOVE LOOP - call the function using slowptr and head in if (fastptr == slowptr) */
 void removeLoop(struct Node* loop_node, struct Node* head) 
 { 
     struct Node* ptr1 = loop_node; 
