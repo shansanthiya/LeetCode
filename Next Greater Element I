@@ -1,0 +1,23 @@
+vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+        stack<int> st;
+        unordered_map<int,int> mp;
+        for(int num : nums2)
+        {
+            while(!st.empty() && num > st.top())
+            {
+                mp[st.top()] = num;
+                st.pop();
+            }
+            st.push(num);
+        }
+        
+        vector<int> res;
+        for(int n : nums1)
+        {
+            if(mp.find(n) != mp.end())
+                res.push_back(mp[n]);
+            else
+                res.push_back(-1);
+        }
+        return res;
+    }
