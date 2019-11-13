@@ -1,0 +1,20 @@
+    bool canPermutePalindrome(string s) {
+        unordered_map<char, int> umap;
+        for(auto c : s)
+        {
+            umap[c] += 1;
+            cout << c << ":" << umap[c] << endl;
+        }
+        int even = 0;
+        int odd = 0;
+        for(auto y : umap)
+        {
+            if(umap[y.first] %2 == 0)
+                even++;
+            else
+                odd++;
+        }
+        if(odd <= 1)
+            return true;
+        return false;
+    }
